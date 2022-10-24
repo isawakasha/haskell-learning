@@ -1,8 +1,10 @@
-import Text.CSV
+import Text.CSV (parseCSV)
+import System.Environment (getArgs)
 
 main :: IO ()
 main = do
-        let fileName = "./text.csv"
+        args <- getArgs
+        let fileName = args !! 0
         file <- readFile fileName
         let csv = parseCSV fileName file
         either printError printCsv csv where
